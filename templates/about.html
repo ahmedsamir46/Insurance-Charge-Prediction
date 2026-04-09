@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="about-page">
+    <h2 class="main-title">About This Project</h2>
+
+    <!-- 1. Dataset description -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">📊</span> About the Dataset</div>
+        <p>
+            Personal health care cost data contains information about the costs associated with
+            individuals' health care. This dataset is used to train a model that can predict costs
+            associated with health care for specific individuals. Using predictive modelling,
+            insurers and healthcare providers can identify financial risks and plan financial
+            estimates for insured individuals.
+            <a href="https://www.kaggle.com/datasets/mirichoi0218/insurance/data" class="data-link" target="_blank">
+                View on Kaggle →
+            </a>
+        </p>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="sb-val">{{ shape[0] }}</div>
+                <div class="sb-label">Rows</div>
+            </div>
+            <div class="stat-box">
+                <div class="sb-val">{{ shape[1] }}</div>
+                <div class="sb-label">Columns</div>
+            </div>
+            <div class="stat-box">
+                <div class="sb-val">0</div>
+                <div class="sb-label">Missing values</div>
+            </div>
+            <div class="stat-box">
+                <div class="sb-val">3</div>
+                <div class="sb-label">Categorical cols</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Column descriptions -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">📋</span> Column Descriptions</div>
+        <div class="about-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Column</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for column, desc in packed %}
+                    <tr>
+                        <td style="color:var(--text-muted);font-size:12px;">{{ loop.index }}</td>
+                        <td style="font-weight:600;color:var(--primary-light);font-family:'Space Grotesk',sans-serif;">{{ column }}</td>
+                        <td>{{ desc }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 3. Statistics -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">📈</span> Dataset Statistics</div>
+        <div class="about-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Max</th>
+                        <th>Min</th>
+                        <th>Unique Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for column in columns %}
+                    <tr>
+                        <td style="font-weight:600;color:var(--primary-light);">{{ column }}</td>
+                        <td>{{ max[column] if column in max else '—' }}</td>
+                        <td>{{ min[column] if column in min else '—' }}</td>
+                        <td>{{ nunique[column] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 4. Model explanation -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">🤖</span> Model — Random Forest Regressor</div>
+        <p>
+            Random Forest is a supervised machine-learning algorithm made up of decision trees.
+            It is an ensemble technique — a meta-estimator that fits multiple decision trees on
+            various sub-samples of the dataset and uses averaging to improve predictive accuracy
+            and control over-fitting. It is less prone to over-fitting than a single decision tree
+            and generally offers greater prediction stability for numerical targets like insurance costs.
+        </p>
+        <img src="../static/images/random_forest.jpg" alt="Random Forest diagram" class="about-img">
+    </div>
+
+    <!-- 5. Preprocessing -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">⚙️</span> Preprocessing — One-Hot Encoding</div>
+        <p>
+            Categorical features (<code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#a5b4fc;font-size:12px;">sex</code>,
+            <code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#a5b4fc;font-size:12px;">smoker</code>,
+            <code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#a5b4fc;font-size:12px;">region</code>)
+            are transformed to numerical using One-Hot Encoding (<code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#a5b4fc;font-size:12px;">pd.get_dummies</code>).
+            Feature selection via <code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#a5b4fc;font-size:12px;">f_regression</code>
+            identified <strong style="color:var(--text-primary);">smoker</strong> and <strong style="color:var(--text-primary);">age</strong>
+            as the two most predictive features.
+        </p>
+        <img src="../static/images/One Hot Encoder.JPG" alt="One-Hot Encoding diagram" class="about-img">
+
+        <div class="code">
+            <code>from sklearn.feature_selection import f_regression, SelectKBest</code>
+            <code>mic = SelectKBest(score_func=f_regression, k=2)</code>
+            <code>mic.fit(x, y)</code>
+            <code>feature_MI_score = pd.Series(mic.scores_, index=x.columns)</code>
+            <code>feature_MI_score.sort_values(ascending=False)</code>
+        </div>
+    </div>
+
+    <!-- 6. Model accuracy -->
+    <div class="about-section">
+        <div class="section-heading"><span class="s-icon">🏆</span> Model Accuracy (R² Score)</div>
+        <p>The model is evaluated on a held-out 20% test set with a fixed random seed for reproducibility.</p>
+        <div class="score-badge">📊 {{ score }}</div>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="home-page">
+    <div class="hero-grid">
+
+        <!-- Left: Text -->
+        <div class="hero-text">
+            <div class="hero-badge">✨ ML-Powered Estimation</div>
+
+            <h1 class="hero-title">
+                Predict Your<br>
+                <span class="highlight">Insurance Cost</span><br>
+                Instantly
+            </h1>
+
+            <p class="hero-description">
+                Enter your personal health profile and our Random Forest model will estimate
+                your annual medical insurance charges in seconds — with over 85% accuracy.
+            </p>
+
+            <div class="hero-actions">
+                <a href="/charge" class="button">Get Your Estimate →</a>
+                <a href="/About" class="btn-outline">Learn How It Works</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">1,338</span>
+                    <span class="stat-label">Records trained</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">RF</span>
+                    <span class="stat-label">Algorithm</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">6</span>
+                    <span class="stat-label">Input features</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="hero-visual">
+            <div class="hero-image-wrap">
+                <img src="../static/images/OIP (1).jpeg" alt="Insurance illustration">
+                <div class="hero-image-overlay">
+                    <div class="overlay-icon">📊</div>
+                    <div class="overlay-text">
+                        <strong>Random Forest Regressor</strong>
+                        <span>Ensemble of 100 decision trees</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature strip -->
+<section class="features-strip">
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h4>Instant Prediction</h4>
+            <p>Get your estimated charge in under a second with our pre-trained model.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🎯</span>
+            <h4>High Accuracy</h4>
+            <p>Random Forest achieves strong R² scores by averaging hundreds of trees.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🔒</span>
+            <h4>Validated Inputs</h4>
+            <p>All form inputs are server-validated to ensure reliable predictions.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📈</span>
+            <h4>Data Insights</h4>
+            <p>Explore correlations, distributions, and trends in the underlying dataset.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

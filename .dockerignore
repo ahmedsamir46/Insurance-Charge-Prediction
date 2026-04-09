@@ -1,0 +1,15 @@
+# InsureAI — Insurance Charge Predictor
+# .dockerignore — exclude files that shouldn't go into the image
+ai/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.git/
+.gitignore
+*.md
+.env
+.env.*
+Insurance_app/
+Demo pdf/

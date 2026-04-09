@@ -1,0 +1,59 @@
+/* ─── Visualization page ─────────────────────── */
+.viz-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ─── Intro section ──────────────────────────── */
+.viz-intro {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* ─── Chart section ──────────────────────────── */
+.chart-section {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.chart-section:hover::before { opacity: 1; }
+.chart-section:hover { background: var(--bg-card-hover); box-shadow: var(--shadow-sm); }
+
+.chart-caption {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 2px solid var(--primary);
+  line-height: 1.6;
+}
+
+.chart-section img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  display: block;
+}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="predict-page">
+    <div class="result-wrapper">
+
+        <!-- Main result card -->
+        <div class="result-card glass-card">
+            <span class="result-emoji">💰</span>
+            <p class="result-label">Estimated Annual Insurance Charge</p>
+            <div class="result-amount">${{ "{:,.2f}".format(charge) }}</div>
+            <p class="result-note">Based on your profile — powered by Random Forest Regressor</p>
+
+            <!-- Input summary -->
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="s-label">Age</div>
+                    <div class="s-value">{{ age }} yrs</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Sex</div>
+                    <div class="s-value">{{ sex }}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">BMI</div>
+                    <div class="s-value">{{ bmi }}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Region</div>
+                    <div class="s-value">{{ region1 }}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Smoker</div>
+                    <div class="s-value">{{ smoker }}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Model</div>
+                    <div class="s-value" style="font-size:12px;color:var(--text-muted);">Random Forest</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="result-actions">
+            <a href="/charge" class="btn-again">🔄 Try Again</a>
+            <a href="/"       class="btn-home">🏠 Home</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

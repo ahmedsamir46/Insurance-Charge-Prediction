@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="viz-page">
+    <h2 class="main-title">Data Visualization</h2>
+
+    <!-- Intro -->
+    <div class="viz-intro">
+        All charts were generated using <strong style="color:var(--primary-light);">Plotly Express</strong> —
+        a high-level Python graphing library. Plotly Express functions use graph objects internally and return
+        a <code style="background:rgba(108,99,255,0.15);padding:1px 6px;border-radius:4px;color:#7dd3fc;font-size:12px;">plotly.graph_objects.Figure</code>
+        instance, making interactive chart creation concise and expressive.
+        <div class="code" style="margin-top:14px;">
+            <code>import pandas as pd</code>
+            <code>import plotly.express as px</code>
+            <code>data = pd.read_csv('insurance.csv')</code>
+        </div>
+    </div>
+
+    <!-- Chart 1: Correlation heatmap -->
+    <div class="chart-section">
+        <div class="chart-caption">
+            <strong>Correlation Heatmap</strong> — Showing the correlation between all numerical columns
+            using <code style="background:rgba(108,99,255,0.15);padding:1px 5px;border-radius:4px;color:#7dd3fc;font-size:12px;">px.imshow</code>.
+            Values are rounded to 3 decimal places with <code style="background:rgba(108,99,255,0.15);padding:1px 5px;border-radius:4px;color:#7dd3fc;font-size:12px;">text_auto=True</code>.
+        </div>
+        <div class="code">
+            <code>fig = px.imshow(data.corr().round(3), text_auto=True)</code>
+            <code>fig.show()</code>
+        </div>
+        <img src="../static/images/correlation.png" alt="Correlation heatmap">
+    </div>
+
+    <!-- Chart 2: Gender vs Smoker histogram -->
+    <div class="chart-section">
+        <div class="chart-caption">
+            <strong>Gender × Smoker Distribution</strong> — Count of female and male smokers/non-smokers,
+            grouped by sex with color encoding for smoking status.
+        </div>
+        <div class="code">
+            <code>px.histogram(data, x='sex', text_auto=True, color='smoker',</code>
+            <code>    barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid)</code>
+        </div>
+        <img src="../static/images/histogram 1.png" alt="Gender vs Smoker histogram">
+    </div>
+
+    <!-- Chart 3: Charge distribution -->
+    <div class="chart-section">
+        <div class="chart-caption">
+            <strong>Charge Distribution</strong> — Frequency distribution of insurance charges across
+            all 1,338 records, highlighting the right-skewed nature of healthcare costs.
+        </div>
+        <div class="code">
+            <code>px.histogram(data, x='charges')</code>
+        </div>
+        <img src="../static/images/histogram 2.png" alt="Charges histogram">
+    </div>
+
+    <!-- Chart 4: Region pie -->
+    <div class="chart-section">
+        <div class="chart-caption">
+            <strong>Charges by Region</strong> — Pie chart revealing that
+            <em>southeast &gt; northeast &gt; northwest &gt; southwest</em> in total insurance charges.
+        </div>
+        <div class="code">
+            <code>px.pie(values=data['charges'], names=data['region'])</code>
+        </div>
+        <img src="../static/images/pie.png" alt="Charges by region pie chart">
+    </div>
+
+    <!-- Chart 5: Age scatter -->
+    <div class="chart-section">
+        <div class="chart-caption">
+            <strong>Age vs Charges Scatter</strong> — Reveals three distinct charge clusters,
+            likely corresponding to non-smokers, moderate smokers, and heavy smokers.
+        </div>
+        <div class="code">
+            <code>px.scatter(data, x="age", y="charges", color="charges", range_color=[0, 70000])</code>
+        </div>
+        <img src="../static/images/scatterplot.png" alt="Age vs charges scatter plot">
+    </div>
+
+</div>
+{% endblock content %}
