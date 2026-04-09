@@ -49,6 +49,8 @@ MODEL_PATH = 'insurance_model.joblib'
 
 global_score = "87.05%" # Baseline R² score for Random Forest on this dataset
 
+IS_VERCEL = "VERCEL" in os.environ
+
 if os.path.exists(MODEL_PATH):
     model1 = joblib.load(MODEL_PATH)
 elif os.path.exists(DATA_PATH):
@@ -61,7 +63,10 @@ elif os.path.exists(DATA_PATH):
     
     model1 = RandomForestRegressor(n_estimators=100, random_state=42)
     model1.fit(x_train, y_train)
-    joblib.dump(model1, MODEL_PATH)
+    
+    # DO NOT dump model to disk on Vercel (read-only filesystem)
+    if not IS_VERCEL:
+        joblib.dump(model1, MODEL_PATH)
     
     # Update score if we just trained
     global_score = f'{model1.score(x_test, y_test) * 100:.2f}%'

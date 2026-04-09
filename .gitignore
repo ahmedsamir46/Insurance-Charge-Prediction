@@ -31,10 +31,8 @@ env/
 .venv
 
 # Data & Models
-insurance_model.joblib
-# Keep insurance.csv in repo if it's the source data, 
-# but models can be large - usually excluded.
-# insurance.csv
+# Keep model in repo for Serverless/Vercel support
+# insurance_model.joblib
 
 # IDEs
 .vscode/
