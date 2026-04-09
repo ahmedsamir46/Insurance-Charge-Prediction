@@ -28,7 +28,7 @@
             <code>fig = px.imshow(data.corr().round(3), text_auto=True)</code>
             <code>fig.show()</code>
         </div>
-        <img src="../static/images/correlation.png" alt="Correlation heatmap">
+        <img src="{{ url_for('static', filename='images/correlation.png') }}" alt="Correlation heatmap">
     </div>
 
     <!-- Chart 2: Gender vs Smoker histogram -->
@@ -41,7 +41,7 @@
             <code>px.histogram(data, x='sex', text_auto=True, color='smoker',</code>
             <code>    barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid)</code>
         </div>
-        <img src="../static/images/histogram 1.png" alt="Gender vs Smoker histogram">
+        <img src="{{ url_for('static', filename='images/histogram 1.png') }}" alt="Gender vs Smoker histogram">
     </div>
 
     <!-- Chart 3: Charge distribution -->
@@ -53,7 +53,7 @@
         <div class="code">
             <code>px.histogram(data, x='charges')</code>
         </div>
-        <img src="../static/images/histogram 2.png" alt="Charges histogram">
+        <img src="{{ url_for('static', filename='images/histogram 2.png') }}" alt="Charges histogram">
     </div>
 
     <!-- Chart 4: Region pie -->
@@ -65,7 +65,7 @@
         <div class="code">
             <code>px.pie(values=data['charges'], names=data['region'])</code>
         </div>
-        <img src="../static/images/pie.png" alt="Charges by region pie chart">
+        <img src="{{ url_for('static', filename='images/pie.png') }}" alt="Charges by region pie chart">
     </div>
 
     <!-- Chart 5: Age scatter -->
@@ -77,7 +77,7 @@
         <div class="code">
             <code>px.scatter(data, x="age", y="charges", color="charges", range_color=[0, 70000])</code>
         </div>
-        <img src="../static/images/scatterplot.png" alt="Age vs charges scatter plot">
+        <img src="{{ url_for('static', filename='images/scatterplot.png') }}" alt="Age vs charges scatter plot">
     </div>
 
 </div>

@@ -100,7 +100,7 @@
             and control over-fitting. It is less prone to over-fitting than a single decision tree
             and generally offers greater prediction stability for numerical targets like insurance costs.
         </p>
-        <img src="../static/images/random_forest.jpg" alt="Random Forest diagram" class="about-img">
+        <img src="{{ url_for('static', filename='images/random_forest.jpg') }}" alt="Random Forest diagram" class="about-img">
     </div>
 
     <!-- 5. Preprocessing -->
@@ -115,7 +115,7 @@
             identified <strong style="color:var(--text-primary);">smoker</strong> and <strong style="color:var(--text-primary);">age</strong>
             as the two most predictive features.
         </p>
-        <img src="../static/images/One Hot Encoder.JPG" alt="One-Hot Encoding diagram" class="about-img">
+        <img src="{{ url_for('static', filename='images/One Hot Encoder.JPG') }}" alt="One-Hot Encoding diagram" class="about-img">
 
         <div class="code">
             <code>from sklearn.feature_selection import f_regression, SelectKBest</code>
